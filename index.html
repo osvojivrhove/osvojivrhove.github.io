@@ -1,39 +1,51 @@
 <html>
-<head>
+  <head>
+    <!-- Install the Web SDK  with CDN-->
+    <script src="https://unpkg.com/realm-web@2.0.0"></script>
+    <script>
+      const appId = "osvojivrhove-srzix";
+      const app = new Realm.App({ id: appId });
 
-<!-- Install the Web SDK  with CDN-->
-<script src="https://unpkg.com/realm-web@2.0.0"></script>
-<script>
-const appId = "osvojivrhove-srzix";
-const app = new Realm.App({ id:appId});
+      //Get Tokens from the url
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get("token");
+      const tokenId = params.get("tokenId");
+      console.log(token);
+      console.log(tokenId);
+      //Confirm email
+      app.emailPasswordAuth
+        .confirmUser({ token, tokenId })
+        .then(() => displayResult("success"))
+        .catch((err) => displayResult("error", err));
 
-//Get Tokens from the url 
-const params = new URLSearchParams(window.location.search);
-const token = params.get('token');
-const tokenId = params.get('tokenId');   
-console.log(token);
-console.log(tokenId);
-//Confirm email
-app.emailPasswordAuth
-    .confirmUser({token, tokenId})
-    .then(() => displayResult('success'))
-    .catch(err => displayResult('error', err))
-    
-//Display Message depending on result
-function displayResult(result, err) {
-    const message = document.getElementById("message");
-    if (result === "success") {
-        message.innerText = "Your email has been verified.You can close this page and connect to the app. Thank you.";
-    }
-   else if (result === "error") {
-       message.innerText = err;
-   }
-}
-</script>
+      //Display Message depending on result
+      function displayResult(result, err) {
+        const message = document.getElementById("message");
+        if (result === "success") {
+          message.innerText =
+            "Your email has been verified.You can close this page and connect to the app. Thank you.";
+        } else if (result === "error") {
+          message.innerText = err;
+        }
+      }
+    </script>
 
-<title>Email verifikacija</title>
-</head>
-<body>
-    <h5 id = "message"></h5>
-</body>
+    <title>Email verifikacija</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <div class="background">
+      <h5 id="message"></h5>
+    </div>
+  </body>
 </html>
