@@ -41,7 +41,7 @@ img {
   font-size: 30;
   margin: 30px;
 }
-@media screen and (max-height: 700px), (max-width: 300px) {
+@media screen and (max-height: 780px), (max-width: 300px) {
   #message {
     font-size: 18px;
     margin: 5%;
