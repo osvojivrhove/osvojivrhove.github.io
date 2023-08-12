@@ -23,9 +23,9 @@
         const message = document.getElementById("message");
         if (result === "success") {
           message.innerText =
-            "Your email has been verified.You can close this page and connect to the app. Thank you.";
+            "Vaš nalog je uspješno aktiviran! Ulogujte se.";
         } else if (result === "error") {
-          message.innerText = err;
+          message.innerText = "Došlo je do greške prilikom aktivacije naloga. \n Molimo pokušajte kasnije.";
         }
       }
     </script>
@@ -45,7 +45,12 @@
   </head>
   <body>
     <div class="background">
-      <h5 id="message"></h5>
+      <div class="content">
+        <div class="logo_container">
+          <img src="/images/logoPin.png" alt="osvojivrhove" />
+        </div>
+        <h5 id="message"></h5>
+      </div>
     </div>
   </body>
 </html>
